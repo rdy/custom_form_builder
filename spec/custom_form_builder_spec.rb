@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CustomFormBuilder do
+describe CustomFormBuilder, :type => :view do
   describe "#submit" do
     it "renders a button when submit is used with the tag: button" do
       code = %{
