@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe FormHelper, :type => :view do
+describe FormHelper, :type => :helper do
   describe "#button_to" do
     it "should use a button tag instead of an input" do
       current_dom = Nokogiri::HTML(helper.button_to "test", "#")
