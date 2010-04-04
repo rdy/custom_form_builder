@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe CustomFormBuilder, :type => :view do
+  def current_dom
+    Nokogiri::HTML.parse(response.body)
+  end
   describe "#submit" do
     it "renders a button when submit is used with the tag: button" do
       code = %{
@@ -55,7 +58,7 @@ describe CustomFormBuilder, :type => :view do
           }
           render :inline => code, :locals => { :user => create_user }
           current_dom.at("form > #{tag}")["class"].should include("required")
-          current_dom.at("form > #{tag}")["minlength"].should == "1"
+          current_dom.at("form > #{tag}")["minlength"].should be_present
           current_dom.at("form > #{tag}")["maxlength"].should == "100"
         end
         it "appends minlength to a field when the model has a validates_length_of" do
